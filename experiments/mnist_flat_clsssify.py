@@ -10,7 +10,7 @@ import numpy as np
 tf.keras.backend.clear_session()
 
 def display_images_with_predictions(dataset, model):
-    num_images_to_display = 10  # Adjust the number of images to display
+    num_images_to_display = 10  # Number of images to display
 
     for images, labels in dataset.take(1):
         predicted_labels = model(images, training=False).numpy()
@@ -35,7 +35,7 @@ def main(args):
     model = ai.models.image.FlatImageClassifier(10)
 
     # To avoid error of logits.shape tf.keras.layers.Flatten() was added to classifier.py 
-    # Optionally BatchNormalization() was also added to classifier.py (FlatImageClassifier)
+    # Optional BatchNormalization() was also added to classifier.py (FlatImageClassifier)
 
     # todo: create optimizer (optional: try with learning rate decay)
     learning_rate_decay = tf.keras.optimizers.schedules.ExponentialDecay(initial_learning_rate=0.001, decay_steps=10000, decay_rate=0.9, staircase=False, name=None)
@@ -65,7 +65,7 @@ def main(args):
     # todo: run training and evaluation for number or epochs (from argument parser)
     #  and print results (accumulated) from each epoch (train and val separately)
     mc_loss = tf.metrics.Mean('classifier')
-    
+
     for i in range(int(num_epochs)):
         mc_loss.reset_states()
         with tqdm.tqdm(total=60000) as pbar:
